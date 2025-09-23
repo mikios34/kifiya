@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kifiya/features/auth/presentation/pages/login_page.dart';
+import 'package:kifiya/features/auth/presentation/pages/register_page.dart';
 import 'package:kifiya/features/splash/splash_scree.dart';
 
 GoRouter appRouter = GoRouter(
-  initialLocation: SplashScreen.routeName,
+  initialLocation: LoginPage.routeName,
   routes: <RouteBase>[
     GoRoute(
       name: SplashScreen.routeName,
       path: SplashScreen.routeName,
       pageBuilder: (context, GoRouterState state) =>
           createCustomTransition(child: SplashScreen()),
+    ),
+    GoRoute(
+      name: LoginPage.routeName,
+      path: LoginPage.routeName,
+      pageBuilder: (context, GoRouterState state) =>
+          createCustomTransition(child: LoginPage()),
+    ),
+
+    GoRoute(
+      name: RegisterPage.routeName,
+      path: RegisterPage.routeName,
+      pageBuilder: (context, GoRouterState state) =>
+          createCustomTransition(child: RegisterPage()),
     ),
   ],
 );
