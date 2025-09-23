@@ -13,7 +13,13 @@ void setupLocator() {
   dio.interceptors.add(DioInterceptor());
   locator.registerSingleton<Dio>(dio);
 
+  // Register API services
+  locator.registerSingleton<AuthApiService>(AuthApiService(locator<Dio>()));
 
+  // Register repositories
+  locator.registerSingleton<AuthRepository>(
+    AuthRepositoryImpl(locator<AuthApiService>()),
+  );
 
   // Register BLoCs
   // locator.registerFactory<AuthBloc>(() => AuthBloc(locator<AuthRepository>()));
