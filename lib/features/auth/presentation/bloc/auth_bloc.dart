@@ -53,8 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLogoutRequested event,
     Emitter<AuthState> emit,
   ) async {
-    // Clear any stored tokens here if using secure storage
-    // await _secureStorage.deleteAll();
+ 
 
     emit(const AuthUnauthenticated());
   }
