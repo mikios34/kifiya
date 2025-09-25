@@ -72,9 +72,9 @@ class DioInterceptor extends Interceptor {
 
       // Create a new Dio instance to avoid interceptor loops
       final refreshDio = Dio(_dio.options);
-      if (accessToken != null) {
-        refreshDio.options.headers['Authorization'] = 'Bearer $accessToken';
-      }
+      // if (accessToken != null) {
+      //   refreshDio.options.headers['Authorization'] = 'Bearer $accessToken';
+      // }
 
       final response = await refreshDio.post(
         '/api/auth/refresh-token',
