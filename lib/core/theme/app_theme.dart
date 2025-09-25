@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Colors
+  static const Color primaryColor = Color(0xFF414A61);
   static const Color primaryButtonColor = Color(0xFF414A61);
   static const Color backgroundColorAuth = Color(0xFF414A61);
   static const Color primaryTextColor = Color(0xFF000000);
@@ -14,6 +15,10 @@ class AppTheme {
   static const Color backgroundColor = Color(0xFFFAFAFA);
   static const Color inputBorderColor = Color(0xFFE5E7EB);
   static const Color focusedBorderColor = Color(0xFF414A61);
+  static const Color textColorDark = Color.fromRGBO(3, 25, 82, 0.86);
+
+  static const Color gradientColor1 = Color.fromRGBO(90, 109, 158, 1);
+  static const Color gradientColor2 = Color.fromRGBO(190, 202, 245, 1);
 
   // Text Styles
   static TextStyle get headingStyle => GoogleFonts.poppins(

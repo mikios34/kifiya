@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:kifiya/features/auth/data/model/user_model.dart';
 
 abstract class AuthEvent extends Equatable {
   const AuthEvent();
@@ -8,7 +9,7 @@ abstract class AuthEvent extends Equatable {
 }
 
 class AuthRegisterRequested extends AuthEvent {
-  final Map<String, dynamic> userData;
+  final UserModel userData;
 
   const AuthRegisterRequested(this.userData);
 

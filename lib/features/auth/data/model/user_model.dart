@@ -1,41 +1,41 @@
 class UserModel {
   final String username;
-  final String passwordHash;
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phoneNumber;
+  final String? passwordHash;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phoneNumber;
 
   const UserModel({
     required this.username,
     required this.passwordHash,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phoneNumber,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phoneNumber,
   });
 
   // Factory constructor to create UserModel from JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       username: json['username'] as String,
-      passwordHash: json['passwordHash'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      email: json['email'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      passwordHash: json['passwordHash'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      email: json['email'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
     );
   }
 
   // Method to convert UserModel to JSON
-  Map<String, dynamic> toJson() {
+  Map<String, String> toJson() {
     return {
       'username': username,
-      'passwordHash': passwordHash,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'phoneNumber': phoneNumber,
+      'passwordHash': passwordHash ?? '',
+      'firstName': firstName ?? '',
+      'lastName': lastName ?? '',
+      'email': email ?? '',
+      'phoneNumber': phoneNumber ?? '',
     };
   }
 

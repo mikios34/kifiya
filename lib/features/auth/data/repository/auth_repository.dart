@@ -5,9 +5,7 @@ import 'package:kifiya/features/auth/data/model/user_model.dart';
 
 // Abstract repository interface
 abstract class AuthRepository {
-  Future<Either<AuthFailure, UserModel>> register(
-    Map<String, dynamic> userData,
-  );
+  Future<Either<AuthFailure, UserModel>> register(UserModel userData);
   Future<Either<AuthFailure, LoginResponse>> login(
     String username,
     String password,
@@ -24,9 +22,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._authApiService);
 
   @override
-  Future<Either<AuthFailure, UserModel>> register(
-    Map<String, dynamic> userData,
-  ) async {
+  Future<Either<AuthFailure, UserModel>> register(UserModel userData) async {
     try {
       final user = await _authApiService.register(userData: userData);
       return Right(user);

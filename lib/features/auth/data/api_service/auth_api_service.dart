@@ -7,10 +7,13 @@ class AuthApiService {
   AuthApiService(this._dio);
 
   // Register endpoint
-  Future<UserModel> register({required Map<String, dynamic> userData}) async {
+  Future<UserModel> register({required UserModel userData}) async {
     try {
       print("userData $userData");
-      final response = await _dio.post('/api/auth/register', data: userData);
+      final response = await _dio.post(
+        '/api/auth/register',
+        data: userData.toJson(),
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return UserModel.fromJson(response.data);
@@ -22,7 +25,12 @@ class AuthApiService {
         );
       }
     } on DioException catch (e) {
-      print('Registration failed $e');
+      print(
+        'Registration failed ${DioException(
+          requestOptions: RequestOptions(path: '/api/auth/register'),
+          message: 'Registration failed: $e',
+        )}',
+      );
       rethrow;
     } catch (e) {
       throw DioException(
@@ -40,7 +48,7 @@ class AuthApiService {
     try {
       final response = await _dio.post(
         '/api/auth/login',
-        data: {'username': username, 'password': password},
+        data: {'username': username, 'passwordHash': password},
       );
 
       if (response.statusCode == 200) {
@@ -94,29 +102,37 @@ class AuthApiService {
 
 // Response models for API endpoints
 class LoginResponse {
-  final UserModel user;
+  // final UserModel user;
   final String accessToken;
   final String refreshToken;
+  final int userId;
+  final String username;
 
   const LoginResponse({
-    required this.user,
+    // required this.user,
     required this.accessToken,
     required this.refreshToken,
+    required this.userId,
+    required this.username,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      // user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
+      userId: json['userId'] as int,
+      username: json['username'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'user': user.toJson(),
+      // 'user': user.toJson(),
       'accessToken': accessToken,
       'refreshToken': refreshToken,
+      'userId': userId,
+      'username': username,
     };
   }
 }
